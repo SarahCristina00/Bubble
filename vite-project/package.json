@@ -11,5 +11,17 @@
   "devDependencies": {
     "typescript": "^5.5.3",
     "vite": "^5.4.8"
-  }
+  },
+  "description": "Projeto para o jogo Kanoodle",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SarahCristina00/Bubble.git"
+  },
+  "author": "Sarah Cristina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SarahCristina00/Bubble/issues"
+  },
+  "homepage": "https://github.com/SarahCristina00/Bubble#readme"
 }
