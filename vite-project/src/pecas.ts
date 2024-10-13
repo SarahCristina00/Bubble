@@ -21,3 +21,11 @@ export default class Pecas {
      return template;
      }
 };
+
+export const pecasExistentes=[
+    new Pecas('A', 'red'),
+   new Pecas('B', 'yellow'),
+   new Pecas('C', 'blue'),
+   new Pecas('D', 'green'),
+    new Pecas('E', 'white')
+ ]
