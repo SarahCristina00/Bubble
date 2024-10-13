@@ -1,4 +1,4 @@
-import Pecas, {pecasExistentes} from './pecas';
+import Pecas, {pecasExistentes} from './pecas.ts';
 export default class Tabuleiro extends HTMLElement {
     indice: HTMLElement[] = []; // irá representar cada uma das posições do tabuleiro
     local: number[] = []; // irá representar a posição que a peça está posicionada
@@ -56,6 +56,7 @@ export default class Tabuleiro extends HTMLElement {
         // A quantidade de posições é 55, pois usei como exemplo uma imagem de um tabuleiro com 5 linhas e 11 colunas (5x11)
         for (let n = 0; n < 55; n++) {
             const indice = document.createElement('div');
+            indice.addEventListener('click', () => this.posicionarPecas(n));
             this.posiciona.appendChild(indice);
             this.indice.push(indice);
         }
@@ -87,4 +88,4 @@ export default class Tabuleiro extends HTMLElement {
 
     }
 }
-customElements.define('Tabuleiro', Tabuleiro);
+customElements.define('tabuleiro', Tabuleiro);
