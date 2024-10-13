@@ -1,9 +1,11 @@
+import Pecas, {pecasExistentes} from './pecas';
 export default class Tabuleiro extends HTMLElement {
     indice: HTMLElement[] = []; // irá representar cada uma das posições do tabuleiro
     local: number[] = []; // irá representar a posição que a peça está posicionada
     i: number = 0; // determina o índice em que a peça está posicionada
     posiciona: HTMLElement; // permite alterar a posição da peça no tabuleiro
     seleciona: HTMLElement; // permite que o usuário selecione a posição que deseja por a peça no tabuleiro
+    pecaAtual: Pecas | null = null;
 
     constructor() {
         super();
@@ -47,6 +49,7 @@ export default class Tabuleiro extends HTMLElement {
         this.seleciona = this.shadowRoot!.querySelector('.seleciona')!;
 
         this.criaTabuleiro();
+        this.selecaoPecas();
     }
 
     criaTabuleiro(): void {
@@ -56,6 +59,32 @@ export default class Tabuleiro extends HTMLElement {
             this.posiciona.appendChild(indice);
             this.indice.push(indice);
         }
+    }
+
+    selecionarPecas(pc: Pecas):void{
+        this.pecaAtual = pc;
+        console.log(`Selecionada: ${pc.forma}`);
+
+    }
+    selecaoPecas(): void{
+        pecasExistentes.forEach(pc =>{
+            const divPeça = document.createElement('div');
+            divPeça.innerHTML = pc.desenhar();
+            divPeça.addEventListener('click',()=>this.selecionarPecas(pc));
+            this.seleciona.appendChild(divPeça);
+        })
+    }
+    posicionarPecas(inicio: number): void{
+        if(this.pecaAtual){
+            const elemento = this.indice[inicio];
+            if(!elemento.classList.contains("inserida")){
+            elemento.classList.add("inserida");
+            elemento.innerHTML = this.pecaAtual.desenhar();
+            this.pecaAtual = null;
+            }
+        }
+
+
     }
 }
 customElements.define('Tabuleiro', Tabuleiro);
