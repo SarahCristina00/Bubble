@@ -90,7 +90,8 @@ export default class Tabuleiro extends HTMLElement {
                 
                 this.pecaAtual = null;
             }
-        } else if (elemento.classList.contains("inserida")) {
+        } else 
+            if (elemento.classList.contains("inserida")) {
     
             elemento.classList.remove("inserida");
             elemento.innerHTML = '';
