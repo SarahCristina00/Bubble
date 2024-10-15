@@ -1,4 +1,6 @@
-import Tabuleiro from'./tabuleiro.ts';
+import Tabuleiro from './tabuleiro.ts';
 
-const tabuleiro = new Tabuleiro();
-document.body.appendChild(tabuleiro);
+if (!document.querySelector('tabuleiro-jogo')) {
+    const tabuleiro = new Tabuleiro();
+    document.body.appendChild(tabuleiro);
+}
