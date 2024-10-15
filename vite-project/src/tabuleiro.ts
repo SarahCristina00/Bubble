@@ -88,4 +88,4 @@ export default class Tabuleiro extends HTMLElement {
 
     }
 }
-customElements.define('tabuleiro', Tabuleiro);
+customElements.define('tabuleiro-jogo', Tabuleiro);
