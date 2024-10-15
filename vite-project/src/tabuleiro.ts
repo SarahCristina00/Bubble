@@ -1,10 +1,9 @@
-import Pecas, {pecasExistentes} from './pecas.ts';
+import Pecas, { pecasExistentes } from './pecas.ts';
+
 export default class Tabuleiro extends HTMLElement {
-    indice: HTMLElement[] = []; // irá representar cada uma das posições do tabuleiro
-    local: number[] = []; // irá representar a posição que a peça está posicionada
-    i: number = 0; // determina o índice em que a peça está posicionada
-    posiciona: HTMLElement; // permite alterar a posição da peça no tabuleiro
-    seleciona: HTMLElement; // permite que o usuário selecione a posição que deseja por a peça no tabuleiro
+    indice: HTMLElement[] = [];
+    posiciona: HTMLElement;
+    seleciona: HTMLElement;
     pecaAtual: Pecas | null = null;
 
     constructor() {
@@ -14,6 +13,12 @@ export default class Tabuleiro extends HTMLElement {
 
         this.shadowRoot!.innerHTML = `
         <style>
+            :host {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
             .grade {
                 display: grid;
                 grid-template-columns: repeat(11, 50px);
@@ -25,7 +30,8 @@ export default class Tabuleiro extends HTMLElement {
             .grade div {
                 width: 50px;
                 height: 50px;
-                background-color: #000;
+                background-color: #DB2DF7;
+                align: center;
             }
             .seleciona {
                 margin-top: 20px;
@@ -33,17 +39,10 @@ export default class Tabuleiro extends HTMLElement {
                 grid-template-columns: repeat(3, 50px);
                 gap: 1px;
             }
-            .peca {
-                background-color: orange;
-            }
-            .inserida {
-                background-color: blue;
-            }
         </style>
         <div class="grade"></div>
         <div class="seleciona"></div>
         `;
-
 
         this.posiciona = this.shadowRoot!.querySelector('.grade')!;
         this.seleciona = this.shadowRoot!.querySelector('.seleciona')!;
@@ -53,7 +52,6 @@ export default class Tabuleiro extends HTMLElement {
     }
 
     criaTabuleiro(): void {
-        // A quantidade de posições é 55, pois usei como exemplo uma imagem de um tabuleiro com 5 linhas e 11 colunas (5x11)
         for (let n = 0; n < 55; n++) {
             const indice = document.createElement('div');
             indice.addEventListener('click', () => this.posicionarPecas(n));
@@ -62,30 +60,42 @@ export default class Tabuleiro extends HTMLElement {
         }
     }
 
-    selecionarPecas(pc: Pecas):void{
+    selecionarPecas(pc: Pecas): void {
         this.pecaAtual = pc;
         console.log(`Selecionada: ${pc.forma}`);
-
     }
-    selecaoPecas(): void{
-        pecasExistentes.forEach(pc =>{
+
+    selecaoPecas(): void {
+        pecasExistentes.forEach(pc => {
             const divPeça = document.createElement('div');
             divPeça.innerHTML = pc.desenhar();
-            divPeça.addEventListener('click',()=>this.selecionarPecas(pc));
+            divPeça.addEventListener('click', () => this.selecionarPecas(pc));
             this.seleciona.appendChild(divPeça);
-        })
+        });
     }
-    posicionarPecas(inicio: number): void{
-        if(this.pecaAtual){
-            const elemento = this.indice[inicio];
-            if(!elemento.classList.contains("inserida")){
-            elemento.classList.add("inserida");
-            elemento.innerHTML = this.pecaAtual.desenhar();
-            this.pecaAtual = null;
+
+    posicionarPecas(inicio: number): void {
+        const elemento = this.indice[inicio];
+        
+        if (this.pecaAtual) {
+            if (!elemento.classList.contains("inserida")) {
+                elemento.classList.add("inserida");
+                elemento.innerHTML = this.pecaAtual.desenhar();
+                
+                
+                elemento.addEventListener('click', () => {
+                    elemento.classList.remove("inserida");
+                    elemento.innerHTML = '';
+                });
+                
+                this.pecaAtual = null;
             }
+        } else if (elemento.classList.contains("inserida")) {
+    
+            elemento.classList.remove("inserida");
+            elemento.innerHTML = '';
         }
-
-
     }
 }
+
 customElements.define('tabuleiro-jogo', Tabuleiro);
