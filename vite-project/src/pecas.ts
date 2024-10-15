@@ -14,7 +14,9 @@ export default class Pecas {
          <div class= "peca"
          style = "background-color: ${this.cor};
          text-align: center;
-         line-height: 50px;">
+         line-height: 50px;"
+         width: 50px;
+         height: 50px;>
          ${this.forma}
          </div>
      `;
