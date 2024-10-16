@@ -18,8 +18,10 @@ export default class Pecas {
          width: 50px;
          height: 50px;>
          ${this.forma}
+    
+
          </div>
-     `;
+     ` ;
      return template;
      }
 };
