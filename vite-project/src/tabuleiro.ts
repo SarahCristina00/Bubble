@@ -24,13 +24,12 @@ export default class Tabuleiro extends HTMLElement {
                 grid-template-columns: repeat(11, 50px);
                 grid-template-rows: repeat(5, 50px);
                 gap: 1px;
-                background-color: #333;
-                border: 2px solid #fff;
+                background-color: #FFFF;
             }
             .grade div {
                 width: 50px;
                 height: 50px;
-                background-color: #DB2DF7;
+                background-color: #803296;
                 align: center;
             }
             .seleciona {

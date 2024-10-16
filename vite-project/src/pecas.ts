@@ -25,9 +25,9 @@ export default class Pecas {
 };
 
 export const pecasExistentes=[
-    new Pecas('A', 'red'),
-   new Pecas('B', 'yellow'),
-   new Pecas('C', 'blue'),
-   new Pecas('D', 'green'),
-    new Pecas('E', 'white')
+    new Pecas('1', 'red'),
+   new Pecas('2', 'yellow'),
+   new Pecas('3', 'blue'),
+   new Pecas('4', 'green'),
+    new Pecas('5', 'white')
  ]
