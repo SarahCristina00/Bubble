@@ -1,35 +1,17 @@
 export default class Pecas {
-
-    forma: string;
+    forma: { x: number; y: number }[];
     cor: string;
 
-    constructor(forma: string, cor: string){
+    constructor(forma: { x: number; y: number }[], cor: string) {
         this.forma = forma;
         this.cor = cor;
-
     }
-    desenhar(): string{
+}
 
-        const template = `
-         <div class= "peca"
-         style = "background-color: ${this.cor};
-         text-align: center;
-         line-height: 50px;"
-         width: 50px;
-         height: 50px;>
-         ${this.forma}
-    
 
-         </div>
-     ` ;
-     return template;
-     }
-};
-
-export const pecasExistentes=[
-    new Pecas('1', 'red'),
-   new Pecas('2', 'yellow'),
-   new Pecas('3', 'blue'),
-   new Pecas('4', 'green'),
-    new Pecas('5', 'white')
- ]
+export const pecasExistentes = [
+    new Pecas([{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }], "red"), 
+    new Pecas([{ x: 0, y: 0 }, { x: -1, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }], "yellow"), 
+    new Pecas([{ x: 0, y: 0 }, { x: -1, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 1 }], "blue"), 
+    new Pecas([{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 1 }, { x: -1, y: 1 }], "green") 
+];
