@@ -104,9 +104,9 @@ export default class Tabuleiro extends HTMLElement {
     if (!this.atual) return;
 
     this.atual.forma.forEach((block) => {
-      const index = inicio + block.y * 11 + block.x;
-      if (index >= 0 && index < this.quadro.length) {
-        const elemento = this.quadro[index];
+      const incluir = inicio + block.y * 11 + block.x;
+      if (incluir >= 0 && incluir < this.quadro.length) {
+        const elemento = this.quadro[incluir];
 
         if (!elemento.classList.contains("inserida")) {
           elemento.classList.add("inserida");
